@@ -15,6 +15,15 @@ function NotesList() {
             </div>
         )
     }
+    const handleDelete = (id) => {
+  const isConfirmed = window.confirm(
+    "Are you sure you want to delete this note?"
+  );
+
+  if (isConfirmed) {
+    dispatch(deleteNote(id));
+  }
+};
     console.log(notes);
     return (
         <div className='mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -28,7 +37,7 @@ function NotesList() {
                         <span className='absolute top-1 right-4 mt-4 w-fit inline-block text-xs bg-indigo-600 text-white px-2 py-1 rounded-full'>{data.category}</span>
 
                         <div className='flex gap-3 justify-between'>
-                            <button onClick={() => dispatch(deleteNote(data.id))} className='mt-2 w-full bg-red-100 text-red-600 rounded-lg text-sm py-2 flex justify-around cursor-pointer'><FaTrash /> Delete</button>
+                            <button onClick={() => handleDelete(data.id)} className='mt-2 w-full bg-red-100 text-red-600 rounded-lg text-sm py-2 flex justify-around cursor-pointer'><FaTrash /> Delete</button>
                             <button onClick={() => dispatch(setEditNote(data))} className="mt-2 w-full bg-blue-100 text-blue-600 rounded-lg text-sm py-2 flex justify-around cursor-pointer ">
                                <FaEdit /> Edit
                             </button>
